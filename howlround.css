@@ -1,0 +1,18 @@
+h1 {
+	font-family: sans-serif;
+}
+
+/*
+ * I got the dimensions from the old black & white tv standard.
+ * Seemed suitable if we're inspired by the original
+ * Dr. Who title sequence.
+ *
+ * If you set the style width and height here to be different
+ * to the logical width and height in the javascript, it has
+ * the effect of scaling/zooming the canvas.
+ */
+#tvscreen {
+	border: 1px solid #d3d3d3;
+	width : 768;
+	height: 576;
+}
