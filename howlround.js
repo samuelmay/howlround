@@ -2,14 +2,27 @@ var ScreenResolution = {
     width: 768,
     height: 576
 };
-var FilterGain = 1;
+var FilterGain = 1.22;
+var Dimming = 0.0045;
 var FilterKernel = [
+    0.000, 0.000, 0.001, 0.001, 0.001, 0.001, 0.001, 0.000, 0.000,
+    0.000, 0.001, 0.000, 0.002, 0.004, 0.002, 0.000, 0.001, 0.000,
+    0.001, 0.000, 0.005, 0.002, 0.000, 0.002, 0.005, 0.000, 0.001,
+    0.001, 0.002, 0.002, 0.033, 0.115, 0.033, 0.002, 0.002, 0.001,
+    0.001, 0.004, 0.000, 0.115, 0.312, 0.115, 0.000, 0.004, 0.001,
+    0.001, 0.002, 0.002, 0.033, 0.115, 0.033, 0.002, 0.002, 0.001,
+    0.001, 0.000, 0.005, 0.002, 0.000, 0.002, 0.005, 0.000, 0.001,
+    0.000, 0.001, 0.000, 0.002, 0.004, 0.002, 0.000, 0.001, 0.000,
+    0.000, 0.000, 0.001, 0.001, 0.001, 0.001, 0.001, 0.000, 0.000
+].map(function (x) { return (FilterGain * x) - Dimming; });
+/*const FilterGain = 2;
+const FilterKernel = [
     1, 4, 7, 4, 1,
-    4, 16, 26, 16, 4,
-    7, 26, 41, 26, 7,
-    4, 16, 26, 16, 4,
+    4,16,26,16, 4,
+    7,26,41,26, 7,
+    4,16,26,16, 4,
     1, 4, 7, 4, 1
-].map(function (x) { return FilterGain * (x / 271); });
+].map(x => FilterGain * (x/271));*/
 var KernelRadius = Math.floor(Math.sqrt(FilterKernel.length) / 2);
 function getPixelPointer(x, y, imageData) {
     // this is the number of array cells per pixel. There are four:
@@ -39,9 +52,9 @@ function addBrightness(pointer, imageData, brightness) {
     var value = getBrightness(pointer, imageData);
     value = value + brightness;
     // clip signal output
-    if (value > 255) {
-        value = 255;
-    }
+    //if (value > 255) {
+    //	value = 255;
+    //}
     setBrightness(pointer, imageData, value);
 }
 function testFilter(xI, yI, kernel) {
@@ -77,10 +90,6 @@ function filterPixel(xI, yI, inputData, kernel, outputData) {
                 addBrightness(pointer, outputData, outputVal);
             }
             k++;
-            if (k > kernel.length) {
-                console.log('you fucked up');
-                return;
-            }
         }
     }
 }
@@ -97,29 +106,43 @@ function convolution(inputData, kernel, outputData) {
         }
     }
 }
+var TIMER_RUNNING;
 function feedback() {
-    console.log('feeding back...');
     var tv = document.getElementById("tvscreen");
     var ctx = tv.getContext("2d");
     var thisIteration = ctx.getImageData(0, 0, tv.width, tv.height);
     var nextIteration = ctx.createImageData(tv.width, tv.height);
     convolution(thisIteration, FilterKernel, nextIteration);
     ctx.putImageData(nextIteration, 0, 0);
+    if (TIMER_RUNNING) {
+        window.setTimeout(feedback, 5);
+    }
 }
-function setupScreen() {
-    // initial content
-    //
+function startFeedback() {
+    TIMER_RUNNING = true;
+    feedback();
+}
+function stopFeedback() {
+    TIMER_RUNNING = false;
+}
+function reset() {
     var tv = document.getElementById("tvscreen");
     // Note that for the canvas element, width and height
     // are *different* to the css/style width and height.
     tv.width = ScreenResolution.width;
     tv.height = ScreenResolution.height;
     var ctx = tv.getContext("2d");
-    var x = ScreenResolution.width / 2;
-    var y = ScreenResolution.height / 2;
-    ctx.font = "30px Arial";
-    ctx.strokeText("Hello World", x, y);
+    var x = 180;
+    var y = 280;
+    ctx.font = "100px Arial";
+    //ctx.strokeText("Hello World", x, y);
+    ctx.fillText("Hello World", x, y);
     //ctx.fillRect(x,y,75,75);
-    document.getElementById('iterator').addEventListener('click', feedback);
+}
+function setupScreen() {
+    reset();
+    document.getElementById('startButton').addEventListener('click', startFeedback);
+    document.getElementById('stopButton').addEventListener('click', stopFeedback);
+    document.getElementById('resetButton').addEventListener('click', reset);
 }
 document.addEventListener('DOMContentLoaded', setupScreen);

@@ -3,14 +3,27 @@ const ScreenResolution = {
 	height : 576
 }
 
-const FilterGain = 1;
+const FilterGain = 1.22;
+const Dimming = 0.0045;
+const FilterKernel = [
+	0.000, 0.000, 0.001, 0.001, 0.001, 0.001, 0.001, 0.000, 0.000, 
+	0.000, 0.001, 0.000, 0.002, 0.004, 0.002, 0.000, 0.001, 0.000, 
+	0.001, 0.000, 0.005, 0.002, 0.000, 0.002, 0.005, 0.000, 0.001, 
+	0.001, 0.002, 0.002, 0.033, 0.115, 0.033, 0.002, 0.002, 0.001, 
+	0.001, 0.004, 0.000, 0.115, 0.312, 0.115, 0.000, 0.004, 0.001, 
+	0.001, 0.002, 0.002, 0.033, 0.115, 0.033, 0.002, 0.002, 0.001,
+	0.001, 0.000, 0.005, 0.002, 0.000, 0.002, 0.005, 0.000, 0.001, 
+	0.000, 0.001, 0.000, 0.002, 0.004, 0.002, 0.000, 0.001, 0.000, 
+	0.000, 0.000, 0.001, 0.001, 0.001, 0.001, 0.001, 0.000, 0.000
+].map(x => (FilterGain * x) - Dimming);
+/*const FilterGain = 2;
 const FilterKernel = [
 	1, 4, 7, 4, 1,
 	4,16,26,16, 4,
 	7,26,41,26, 7,
 	4,16,26,16, 4,
 	1, 4, 7, 4, 1
-].map(x => FilterGain * (x/271));
+].map(x => FilterGain * (x/271));*/
 
 const KernelRadius = Math.floor(Math.sqrt(FilterKernel.length)/2);
 
@@ -46,9 +59,9 @@ function addBrightness(pointer: number, imageData: ImageData, brightness: number
 	let value = getBrightness(pointer, imageData);
 	value = value + brightness;
 	// clip signal output
-	if (value > 255) {
-		value = 255;
-	}
+	//if (value > 255) {
+	//	value = 255;
+	//}
 	setBrightness(pointer, imageData, value);
 }
 
@@ -89,11 +102,6 @@ function filterPixel(xI: number, yI: number, inputData: ImageData,  kernel: numb
 				addBrightness(pointer, outputData, outputVal);
 			}
 			k++;
-			if (k > kernel.length) {
-				console.log('you fucked up');
-				return;
-			}
-
 		}
 	}
 }
@@ -114,8 +122,9 @@ function convolution(inputData: ImageData, kernel: number[], outputData: ImageDa
 	}
 }
 
+var TIMER_RUNNING: boolean;
+
 function feedback() {
-	console.log('feeding back...');
 	let tv = <HTMLCanvasElement> document.getElementById("tvscreen");
 	let ctx = tv.getContext("2d");
 
@@ -124,11 +133,19 @@ function feedback() {
 	convolution(thisIteration, FilterKernel, nextIteration);
 
 	ctx.putImageData(nextIteration, 0, 0);
+	if (TIMER_RUNNING) {
+		window.setTimeout(feedback,5);
+	}
+}
+function startFeedback() {
+	TIMER_RUNNING = true;
+	feedback();
+}
+function stopFeedback() {
+	TIMER_RUNNING = false;
 }
 
-function setupScreen() {
-	// initial content
-	//
+function reset() {
 	let tv = <HTMLCanvasElement> document.getElementById("tvscreen");
 	// Note that for the canvas element, width and height
 	// are *different* to the css/style width and height.
@@ -136,14 +153,19 @@ function setupScreen() {
 	tv.height = ScreenResolution.height;
 
 	let ctx = tv.getContext("2d");
-	let x = ScreenResolution.width / 2;
-	let y = ScreenResolution.height / 2;
+	let x = 180;
+	let y = 280;
 	
-	ctx.font = "30px Arial";
-	ctx.strokeText("Hello World", x, y);
+	ctx.font = "100px Arial";
+	//ctx.strokeText("Hello World", x, y);
+	ctx.fillText("Hello World", x, y);
 	//ctx.fillRect(x,y,75,75);
-	document.getElementById('iterator').addEventListener('click', feedback);
 }
-
+function setupScreen() {
+	reset(); 
+	document.getElementById('startButton').addEventListener('click', startFeedback);
+	document.getElementById('stopButton').addEventListener('click', stopFeedback);
+	document.getElementById('resetButton').addEventListener('click', reset);
+}
 document.addEventListener('DOMContentLoaded', setupScreen);
 
