@@ -5,6 +5,36 @@ theme = "anatole"
 [params]
 title = "Sam's Website"
 author = "Samuel May"
-description = "Full stack web developer"
-profilePicture = "images/profilePicture2.jpg"
+description = "Just another professional computer programmer."
+profilePicture = "images/profilePicture.jpg"
+displayMode = "dark"
+mainSections = []
 
+[[params.socialIcons]]
+icon = "fab fa-linkedin"
+title = "Linkedin"
+url = "https://www.linkedin.com/in/samuel-may-982b8559/"
+
+[[params.socialIcons]]
+icon = "fab fa-github"
+title = "GitHub"
+url = "https://github.com/samuelmay"
+
+[[params.socialIcons]]
+icon = "fas fa-envelope"
+title = "E-mail"
+url = "mailto:samuel.may@unswalumni.com"
+
+[menu]
+
+	[[menu.main]]
+	name = "About"
+	identifier = "home"
+	weight = 100
+	url = "/"
+	
+	[[menu.main]]
+	name = "Posts"
+	weight = 300
+	identifier = "posts"
+	url = "/posts/"
