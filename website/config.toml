@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://samuelmay.github.io/"
 languageCode = "en-us"
 title = "Samuel May"
 theme = "anatole"
@@ -8,6 +8,7 @@ author = "Samuel May"
 description = "Just another professional computer programmer."
 profilePicture = "images/profilePicture.jpg"
 displayMode = "dark"
+doNotLoadAnimations = true
 mainSections = []
 
 [[params.socialIcons]]
