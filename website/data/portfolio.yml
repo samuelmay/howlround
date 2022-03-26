@@ -1,0 +1,11 @@
+portfolioitems:
+  - title: Projects
+    portfolioitem:
+      - name: Geni
+        image: 'images/onestop_project.png'
+        link: 'https://geni.1-stop.biz/ui/login'
+        description: 'An Angular website with a .NET Core Web API backend.'
+      - name: MemNet
+        image: 'images/memnet_project.png'
+        link: 'https://demo.memnet.com.au/'
+        description: 'An ASP.NET website'

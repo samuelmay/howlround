@@ -35,7 +35,13 @@ url = "mailto:samuel.may@unswalumni.com"
 	url = "/"
 	
 	[[menu.main]]
-	name = "Posts"
+	name = "Projects"
+	weight = 300
+	identifier = "portfolio"
+	url = "/portfolio/"
+	
+	[[menu.main]]
+	name = "Blog"
 	weight = 300
 	identifier = "posts"
 	url = "/posts/"
