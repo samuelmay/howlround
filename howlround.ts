@@ -3,7 +3,7 @@ const ScreenResolution = {
 	height : 576
 }
 
-const FilterGain = 1.22;
+const FilterGain = 1.25;
 const Dimming = 0.0045;
 const FilterKernel = [
 	0.000, 0.000, 0.001, 0.001, 0.001, 0.001, 0.001, 0.000, 0.000, 
@@ -104,6 +104,12 @@ function filterPixel(xI: number, yI: number, inputData: ImageData,  kernel: numb
 			k++;
 		}
 	}
+
+	// add some noise
+	pointer = getPixelPointer(xI, yI, inputData);
+	let size = getBrightness(pointer, outputData);
+	let noise = Math.floor(0.1 * (Math.random() * size - size));
+	addBrightness(pointer, outputData, noise);
 }
 
 function convolution(inputData: ImageData, kernel: number[], outputData: ImageData) {
@@ -153,12 +159,12 @@ function reset() {
 	tv.height = ScreenResolution.height;
 
 	let ctx = tv.getContext("2d");
-	let x = 180;
+	let x = 100;
 	let y = 280;
 	
 	ctx.font = "100px Arial";
 	//ctx.strokeText("Hello World", x, y);
-	ctx.fillText("Hello World", x, y);
+	ctx.fillText("Samuel May", x, y);
 	//ctx.fillRect(x,y,75,75);
 }
 function setupScreen() {

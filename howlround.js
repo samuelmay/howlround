@@ -2,7 +2,7 @@ var ScreenResolution = {
     width: 768,
     height: 576
 };
-var FilterGain = 1.22;
+var FilterGain = 1.25;
 var Dimming = 0.0045;
 var FilterKernel = [
     0.000, 0.000, 0.001, 0.001, 0.001, 0.001, 0.001, 0.000, 0.000,
@@ -92,6 +92,11 @@ function filterPixel(xI, yI, inputData, kernel, outputData) {
             k++;
         }
     }
+    // add some noise
+    pointer = getPixelPointer(xI, yI, inputData);
+    var size = getBrightness(pointer, outputData);
+    var noise = Math.floor(0.1 * (Math.random() * size - size));
+    addBrightness(pointer, outputData, noise);
 }
 function convolution(inputData, kernel, outputData) {
     var x = 0;
@@ -132,11 +137,11 @@ function reset() {
     tv.width = ScreenResolution.width;
     tv.height = ScreenResolution.height;
     var ctx = tv.getContext("2d");
-    var x = 180;
+    var x = 100;
     var y = 280;
     ctx.font = "100px Arial";
     //ctx.strokeText("Hello World", x, y);
-    ctx.fillText("Hello World", x, y);
+    ctx.fillText("Samuel May", x, y);
     //ctx.fillRect(x,y,75,75);
 }
 function setupScreen() {
