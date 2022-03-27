@@ -1,4 +1,4 @@
-I currently work as a full-stack web developer from Sydney, Australia. 	If you're interested in things I have worked on, please check out the Projects section of this site, or look at my [GitHub repositories](https://github.com/samuelmay) for examples of my code. Unfortunately most of those GitHub projects are very old now - mostly from my undergraduate days when I had free time!
+I currently work as a full-stack web developer in Sydney, Australia. If you're interested in things I have worked on, please check out the Projects section of this site, or look at my [GitHub repositories](https://github.com/samuelmay) for examples of my code. Unfortunately most of those GitHub projects are very old now - mostly from my undergraduate days when I had free time!
 
 Here's a short summary of my career. You might prefer the [PDF copy](/documents/resume.pdf) of my resume.
 
