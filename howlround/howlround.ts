@@ -84,25 +84,60 @@ function testFilter(xI: number, yI: number, kernel: number[]) {
 	}
 }
 
+function smallerOf(a: number, b: number) {
+	if (a < b) {
+		return a;
+	} else {
+		return b;
+	}
+}
+function largerOf(a: number, b: number) {
+	if (a > b) {
+		return a;
+	} else {
+		return b;
+	}
+}
+
+// Alright so this is broken completely but I think I have a strategy to fix this and increase performance.
+// What we need is a 2D array object that transparently handles out of index access (and returns 0)
+// So we can just run off the edges without caring.
+// And just access x,y without worrying about multiplication.
+// This can be tested seperately.
+//
+// Then there's no reason why this can't be parallelised. Look up web workers?
+// Do 2 halves at once, then add the result
+
 // This has side effects on the output data array.
 // The 'I' in 'xI' is for impulse.
 function filterPixel(xI: number, yI: number, inputData: ImageData,  kernel: number[], outputData: ImageData) {
 
 	let pointer = getPixelPointer(xI, yI, inputData);
 	let inputVal = getBrightness(pointer, inputData);
+	let xStep = 4;
+	let yStep = 4 * outputData.width;
 	let k = 0;
+	
+	let startY = largerOf(0,yI - KernelRadius);
+	let endY = smallerOf(yI + KernelRadius, inputData.height - 1);
+	
+	let startX = largerOf(0,xI - KernelRadius);
+	let endX = smallerOf(xI + KernelRadius, inputData.width - 1);
 
-	for (let y = (yI - KernelRadius); y <= (yI + KernelRadius); y++) {
-		for (let x = (xI - KernelRadius); x <= (xI + KernelRadius); x++) {
+	pointer = getPixelPointer(startX, startY, outputData);
+	for (let y = startY; y <= endY; y++) {
+		for (let x = startX; x <= endX; x++) {
 			// only operate when the kernel is not overlapping the
 			// edge of the image
-			if (y >= 0 && x >= 0 && y < inputData.height && x < inputData.width) {
-				let outputVal = inputVal * kernel[k];
-				pointer = getPixelPointer(x, y, outputData);
-				addBrightness(pointer, outputData, outputVal);
-			}
+			//if (y >= 0 && x >= 0 && y < inputData.height && x < inputData.width) {
+			let outputVal = inputVal * kernel[k];
+			//pointer = getPixelPointer(x, y, outputData);
+			addBrightness(pointer, outputData, outputVal);
+			//}
 			k++;
+			pointer = pointer = xStep;
 		}
+		pointer = pointer + yStep;
 	}
 
 	// add some noise
