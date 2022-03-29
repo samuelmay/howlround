@@ -9,3 +9,7 @@ portfolioitems:
         image: 'images/memnet_project.png'
         link: 'https://demo.memnet.com.au/'
         description: 'An ASP.NET website'
+      - name: 1-Stop Mobile App
+        image: 'images/mobile_project.png'
+        link: 'https://play.google.com/store/apps/details?id=biz.onestop.app.vbs'
+        description: 'A mobile app developed natively for both iOS and Android to view Vehicle Booking System manifest information, terminal status updates, and news notifications.'
