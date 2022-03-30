@@ -3,12 +3,13 @@ languageCode = "en-us"
 title = "Samuel May"
 theme = "anatole"
 [params]
-title = "Sam's Website"
+title = "Sam May"
 author = "Samuel May"
 description = "Just another professional computer programmer."
 profilePicture = "images/profilePicture.jpg"
 displayMode = "dark"
 doNotLoadAnimations = true
+enableMediumZoom = false
 mainSections = []
 
 [[params.socialIcons]]

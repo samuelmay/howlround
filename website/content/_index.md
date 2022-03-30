@@ -1,5 +1,7 @@
-I currently work as a full-stack web developer in Sydney, Australia. If you're interested in things I have worked on, please check out the Projects section of this site, or look at my [GitHub repositories](https://github.com/samuelmay) for examples of my code. Unfortunately most of those GitHub projects are very old now - mostly from my undergraduate days when I had free time! There's a couple of interesting things there though - like raw assembly code for [a project](https://github.com/samuelmay/coyote1-sm) with the Propeller microcontroller, and some [statistical regression and interpolation algorithms](https://github.com/samuelmay/Functerpolate) implemented in Clojure. 
+I currently work as a full-stack web developer in Sydney, Australia. If you're interested in what I have worked on, please check out the Projects section of this site, or look at my [GitHub repositories](https://github.com/samuelmay) for examples of my code.
 
+There's a couple of interesting things there - like raw assembly code for [a project](https://github.com/samuelmay/coyote1-sm) with the Propeller microcontroller, and some [statistical regression and interpolation algorithms](https://github.com/samuelmay/Functerpolate) implemented in Clojure. Unfortunately most of those GitHub projects are very old now - mostly from my undergraduate days when I had free time!
+ 
 Here's a short summary of my career. You might prefer the [PDF copy](/documents/resume.pdf) of my resume.
 
 ----
@@ -38,3 +40,9 @@ I also contributed a bit of Python telemetry code for the Sunswift solar car rac
 ### Arch Linux Contribution
 
 For a brief period while at university, I maintained the Clojure package for Arch Linux. At this time I had added it to the AUR as a community package, and it was not yet an official part of the distro. I thought any evidence of this would have disappeared, but my name is happliy still recorded in the list of contributors on the [PKGBUILD file](https://github.com/archlinux/svntogit-community/blob/packages/clojure/trunk/PKGBUILD). I also had a patch accepted into the init scripts for Intel wireless configuration.
+
+----
+
+![Website under construction](images/retro_under_construction1.gif "A classic retro website under construction gif for those who made it this far")
+
+![TypeRacer typing statistics badge](https://data.typeracer.com/misc/badge?user=smtype100 "Yes, I do own a mechanical keyboard")
