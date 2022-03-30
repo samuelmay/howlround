@@ -1,3 +1,6 @@
+---
+title: "About"
+---
 I currently work as a full-stack web developer in Sydney, Australia. If you're interested in what I have worked on, please check out the Projects section of this site, or look at my [GitHub repositories](https://github.com/samuelmay) for examples of my code.
 
 There's a couple of interesting things there - like raw assembly code for [a project](https://github.com/samuelmay/coyote1-sm) with the Propeller microcontroller, and some [statistical regression and interpolation algorithms](https://github.com/samuelmay/Functerpolate) implemented in Clojure. Unfortunately most of those GitHub projects are very old now - mostly from my undergraduate days when I had free time!
