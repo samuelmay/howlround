@@ -29,7 +29,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.WEBSITE_DEPLOY_TOKEN }}
           external_repository: samuelmay/samuelmay.github.io
           publish_branch: main
           publish_dir: ./website/public
