@@ -5,7 +5,7 @@ theme = "anatole"
 [params]
 title = "Samuel May"
 author = "Samuel May"
-description = "Just another professional computer programmer."
+description = "Just another professional computer programmer"
 images = ["images/profilePicture.jpg"]
 profilePicture = "images/profilePicture.jpg"
 displayMode = "dark"

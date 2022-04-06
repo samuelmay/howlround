@@ -13,7 +13,7 @@ Here's a short summary of my career. You might prefer the [PDF copy](/documents/
 
 Some of the projects I have been working on include
 
-- An internal web app in .NET 6 MVC for our finance team in modern asynchronous C#
+- An internal web app for our finance team using .NET 6 MVC and modern asynchronous C#
 - A new invoicing system with a .NET Core Web API backend and an Angular frontend. It's used internally as well as by some of our biggest customers
 - Improvements to our CI/CD including introducing containerized deployments on AWS and rewriting Windows batch scripts in Powershell
 - Maintenance and business logic changes for large and heavily used traditional ASP.NET web applications
