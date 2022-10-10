@@ -7,7 +7,7 @@ There's a couple of interesting things there - like raw assembly code for [a pro
 
 Here's a short summary of my career. You might prefer the [PDF copy](/documents/resume.pdf) of my resume.
 
-### Developer at 1-Stop Connections
+### Developer at OneStop
 
 Some of the projects I have been working on include
 
@@ -26,7 +26,7 @@ This was a small company where I was one of only 2 developers. We maintained a s
 
 ### Freelance Mobile Developer
 
-I was a contractor for 1-Stop developing their original mobile app. I simultaneously worked on both the native Android app in Java, and the native iOS app in Objective-C. Both apps were released in 2014 and used by thousands of users daily for eight years, until the company replaced them with a React Native app in 2022.
+I was a contractor for 1-Stop Connections developing their original mobile app. I simultaneously worked on both the native Android app in Java, and the native iOS app in Objective-C. Both apps were released in 2014 and used by thousands of users daily for eight years, until the company replaced them with a React Native app in 2022.
 
 ### Intern at Alcatel-Lucent
 
