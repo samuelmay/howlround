@@ -1,6 +1,10 @@
 portfolioitems:
   - title: Projects
     portfolioitem:
+      - name: Speaker Design App for Translate Sound Systems
+        image: 'images/speaker_project.png'
+        link: 'https://samuelmay.net/speaker-design'
+        description: 'A single-page app for speaker port design written in Rust with the Yew framework'
       - name: Geni
         image: 'images/onestop_project.png'
         link: 'https://geni.1-stop.biz/ui/login'
